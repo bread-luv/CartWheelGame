@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
             moveDir = new Vector3((mouseRelPos) / 1000, 0, 0);
         }
         Debug.Log(mousePos.x);
-        rb.velocity = moveDir * speed;
+        rb.velocity = moveDir * speed;                                                                                                                                    
 
         rb.AddForce(Physics.gravity * (rb.mass * rb.mass));
 
