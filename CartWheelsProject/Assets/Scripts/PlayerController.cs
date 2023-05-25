@@ -52,12 +52,13 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(Physics.gravity * (rb.mass * rb.mass));
 
-        if (x != 0 && x < 0)
+        sr = GetComponent<SpriteRenderer>();
+
+        if (rb.velocity.x < 0)
         {
             sr.flipX = true;
         }
-
-        else if (x != 0 && x > 0)
+        else if (rb.velocity.x > 0)
         {
             sr.flipX = false;
         }
