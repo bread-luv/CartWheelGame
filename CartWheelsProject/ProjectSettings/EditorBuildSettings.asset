@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: c062e2bb285933a46bc0408cc8f86501
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: 6339161a6da859144ade4986d2af084f
+  - enabled: 1
+    path: Assets/Scenes/Audio.unity
+    guid: 1af33ee173876904f89a1614a5da0b91
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 4de8ed87c55312043ac6d9f2f84c32ea
+  - enabled: 1
     path: Assets/Scenes/BotanicGardens.unity
     guid: 0cc0475e1eb5d6b46bd041f02fb67313
   - enabled: 1
