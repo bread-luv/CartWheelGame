@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/PlantMG.unity
     guid: 0b9ea54c2eba21c49b88d4fd6e2657aa
   - enabled: 1
+    path: Assets/Scenes/BrisbaneHUB.unity
+    guid: f30d2c6913a5a104bad801470025ca5f
+  - enabled: 1
     path: Assets/Scenes/IbisMG.unity
     guid: 8e8c1e79af1e523469d9ed3a2544ccfb
   m_configObjects: {}
