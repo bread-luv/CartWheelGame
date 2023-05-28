@@ -11,7 +11,11 @@ public class ScoreScript : MonoBehaviour
     public static int totalScore;
 
     [SerializeField]
+    AnimalManager animalManager;
+
+    //[SerializeField]
     TextMeshProUGUI score;
+
 
     // Start is called before the first frame update
     void Start()
