@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IbisMG.unity
     guid: 8e8c1e79af1e523469d9ed3a2544ccfb
+  - enabled: 1
+    path: Assets/Scenes/EatStreet.unity
+    guid: 75151a52a7f8ca546b88c0c755d7bb11
   m_configObjects: {}
