@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ScoreScript : MonoBehaviour
 {
 
-    public static int currentScore = 0;
+    public int currentScore = 0;
     public static int totalScore;
 
     [SerializeField]
