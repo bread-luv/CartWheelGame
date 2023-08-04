@@ -5,6 +5,8 @@ using TMPro;
 
 public class WinText : MonoBehaviour
 {
+    public string item;
+
     [SerializeField]
     public TextMeshProUGUI textObj;
 
@@ -15,6 +17,6 @@ public class WinText : MonoBehaviour
 
     private void Update()
     {
-        textObj.text = "YOU GOT " + QuizManager.score + "/" + QuizManager.noQuestions + " PLANTS CORRECT!";
+        textObj.text = "YOU GOT " + QuizManager.score + "/" + QuizManager.noQuestions + " " + item + " CORRECT!";
     }
 }
