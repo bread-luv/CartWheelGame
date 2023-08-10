@@ -48,25 +48,43 @@ public class PlayerController : MonoBehaviour
             Vector3 mousePos = Input.mousePosition;
             float mouseRelPos = mousePos.x - 790;
 
-            if (Input.GetMouseButton(0))
-            {
-                moveDir = new Vector3((mouseRelPos) / 1000, 0, 0);
-            }
-            Debug.Log(mousePos.x);
-            rb.velocity = moveDir * speed;
-
-            rb.AddForce(Physics.gravity * (rb.mass * rb.mass));
-
             sr = GetComponent<SpriteRenderer>();
 
-            if (rb.velocity.x < 0)
+            if (Input.GetMouseButton(0))
             {
-                sr.flipX = true;
+                if (mousePos.x < Screen.width / 2)
+                {
+                    sr.flipX = true;
+                    if (mousePos.x < Screen.width / 4)
+                    {
+                        rb.velocity = new Vector3(-speed, 0, 0);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector3(-speed/2, 0, 0);
+                    }
+                }
+                else
+                {
+                    sr.flipX = false;
+                    if (mousePos.x > Screen.width / 2 + Screen.width / 4)
+                    {
+                        rb.velocity = new Vector3(speed, 0, 0);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector3(speed / 2, 0, 0);
+                    }
+                }
             }
-            else if (rb.velocity.x > 0)
+            else
             {
-                sr.flipX = false;
+                rb.velocity = new Vector3(0, 0, 0);
             }
+
+            Debug.Log(mousePos.x);
+
+            rb.AddForce(Physics.gravity * (rb.mass * rb.mass));
         }
 
     }

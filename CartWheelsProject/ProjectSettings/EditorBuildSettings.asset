@@ -38,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AusFoodMG.unity
     guid: 562fdbd41540390479a93fd73a14e131
+  - enabled: 1
+    path: Assets/Scenes/MeatPieMG.unity
+    guid: dddac1119a2ff424c98c966af50f3a9b
   m_configObjects: {}
