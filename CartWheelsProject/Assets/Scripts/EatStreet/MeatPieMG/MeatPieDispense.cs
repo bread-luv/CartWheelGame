@@ -25,7 +25,10 @@ public class MeatPieDispense : MonoBehaviour
     {
         if ((Vector3.Distance(pie.transform.position, transform.position) < distance) && (assigned != 0))
         {
-            pie.GetComponent<PieMovement>().values[dispenseVal] = assigned;
+            if (pie.GetComponent<PieMovement>().values[dispenseVal] == 0)
+            {
+                pie.GetComponent<PieMovement>().values[dispenseVal] = assigned;
+            }
         }
 
         if (assigned != 0)
