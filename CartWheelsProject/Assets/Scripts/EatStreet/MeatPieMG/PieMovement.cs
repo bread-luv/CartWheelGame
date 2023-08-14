@@ -5,6 +5,7 @@ using UnityEngine;
 public class PieMovement : MonoBehaviour
 {
     public float speed;
+    public float accel = 0.0001f;
     public int[] values = { 0, 0, 0 };
 
     // Update is called once per frame
@@ -12,6 +13,6 @@ public class PieMovement : MonoBehaviour
     {
         transform.position += new Vector3(1, 0, 0) * Time.deltaTime * speed;
 
-        Debug.Log(values[0] + " " + values[1] + " " + values[2]);
+        speed += accel;
     }
 }
