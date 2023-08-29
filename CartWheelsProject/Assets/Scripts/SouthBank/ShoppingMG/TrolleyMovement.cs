@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class TrolleyMovement : MonoBehaviour
 {
 
     public float speed;
@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask terrainLayer;
     public Rigidbody rb;
     public SpriteRenderer sr;
+
+    public Sprite[] sprites;
 
     public bool useGrav = true;
 
@@ -54,19 +56,19 @@ public class PlayerController : MonoBehaviour
             {
                 if (mousePos.x < Screen.width / 2)
                 {
-                    sr.flipX = true;
+                    sr.sprite = sprites[1];
                     if (mousePos.x < Screen.width / 4)
                     {
                         rb.velocity = new Vector3(-speed, 0, 0);
                     }
                     else
                     {
-                        rb.velocity = new Vector3(-speed/2, 0, 0);
+                        rb.velocity = new Vector3(-speed / 2, 0, 0);
                     }
                 }
                 else
                 {
-                    sr.flipX = false;
+                    sr.sprite = sprites[2];
                     if (mousePos.x > Screen.width / 2 + Screen.width / 4)
                     {
                         rb.velocity = new Vector3(speed, 0, 0);
@@ -79,8 +81,11 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                sr.sprite = sprites[0];
                 rb.velocity = new Vector3(0, 0, 0);
             }
+
+            Debug.Log(mousePos.x);
 
             rb.AddForce(Physics.gravity * (rb.mass * rb.mass));
         }
