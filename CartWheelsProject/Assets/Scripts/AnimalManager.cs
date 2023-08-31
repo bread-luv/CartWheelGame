@@ -6,14 +6,22 @@ public class AnimalManager : MonoBehaviour
 {
     public GameObject[] animalStorage;
     public GameObject[] Animals;
+    public static int maxScore = 1;
+    public GameObject scoreLabel;
+
+    public GameObject Score;
+    public GameObject RandomText;
+    public GameObject RandomText2;
+    public GameObject _Animals;
+
     private GameObject currentAnimals;
 
     [SerializeField]
-    public int totalAnimals = 0;
+    public static int totalAnimals = 1;
     private int Randint;
 
     [SerializeField]
-    public int totalCorrectAnimals = 0;
+    public static int totalCorrectAnimals = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -31,23 +39,35 @@ public class AnimalManager : MonoBehaviour
             Animals[i] = animalStorage[Randint].transform.GetChild(i).gameObject;
         }
 
+        ScoreScript.totalScore = 1;
+
         currentAnimals.gameObject.SetActive(true);
     }
 
-    public void CorrectPosition()
+    private void Update()
+    {
+        if (scoreLabel.GetComponent<ScoreScript>().currentScore == maxScore)
+        {
+            Score.SetActive(false);
+            RandomText.SetActive(true);
+            _Animals.SetActive(false);
+        }
+        else if (scoreLabel.GetComponent<ScoreScript>().currentScore < 0)
+        {
+            Incorrect();
+        }
+    }
+
+    public void Incorrect()
+    {
+        Score.SetActive(false);
+        RandomText2.SetActive(true);
+        _Animals.SetActive(false);
+    }
+
+    public static void CorrectPosition()
     {
         totalCorrectAnimals += 1;
 
-        if (totalCorrectAnimals == totalAnimals)
-        {
-            ScoreScript.currentScore += 1;
-            //SoundManagerScript.PlaySound("correct");
-
-            //if (totalCorrectWires == totalWires)
-            //{
-                //SoundManagerScript.PlaySound("complete");
-                //miniGameState.WinGame();
-            //}
-        }
     }
 }

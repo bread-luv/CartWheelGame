@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     public bool useGrav = true;
 
+    public GameObject noMove;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,44 +25,66 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
-        Vector3 castPos = transform.position;
-        castPos.y += 1;
-        if (Physics.Raycast(castPos, -transform.up, out hit, Mathf.Infinity, terrainLayer))
+        if (noMove.activeSelf == false)
         {
-            if (hit.collider != null)
+
+            RaycastHit hit;
+            Vector3 castPos = transform.position;
+            castPos.y += 1;
+            if (Physics.Raycast(castPos, -transform.up, out hit, Mathf.Infinity, terrainLayer))
             {
-                Vector3 movePos = transform.position;
-                movePos.y = hit.point.y + groundDist;
-                transform.position = movePos;
+                if (hit.collider != null)
+                {
+                    Vector3 movePos = transform.position;
+                    movePos.y = hit.point.y + groundDist;
+                    transform.position = movePos;
+                }
             }
-        }
 
 
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-        Vector3 moveDir = new Vector3(0,0,0);
-        Vector3 mousePos = Input.mousePosition;
-        float mouseRelPos = mousePos.x - 790;
+            float x = Input.GetAxis("Horizontal");
+            float y = Input.GetAxis("Vertical");
+            Vector3 moveDir = new Vector3(0, 0, 0);
+            Vector3 mousePos = Input.mousePosition;
+            float mouseRelPos = mousePos.x - 790;
 
-        if (Input.GetMouseButton(0))
-        {
-            moveDir = new Vector3((mouseRelPos) / 1000, 0, 0);
-        }
-        Debug.Log(mousePos.x);
-        rb.velocity = moveDir * speed;                                                                                                                                    
+            sr = GetComponent<SpriteRenderer>();
 
-        rb.AddForce(Physics.gravity * (rb.mass * rb.mass));
+            if (Input.GetMouseButton(0))
+            {
+                if (mousePos.x < Screen.width / 2)
+                {
+                    sr.flipX = true;
+                    if (mousePos.x < Screen.width / 4)
+                    {
+                        rb.velocity = new Vector3(-speed, 0, 0);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector3(-speed/2, 0, 0);
+                    }
+                }
+                else
+                {
+                    sr.flipX = false;
+                    if (mousePos.x > Screen.width / 2 + Screen.width / 4)
+                    {
+                        rb.velocity = new Vector3(speed, 0, 0);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector3(speed / 2, 0, 0);
+                    }
+                }
+            }
+            else
+            {
+                rb.velocity = new Vector3(0, 0, 0);
+            }
 
-        sr = GetComponent<SpriteRenderer>();
+            Debug.Log(mousePos.x);
 
-        if (rb.velocity.x < 0)
-        {
-            sr.flipX = true;
-        }
-        else if (rb.velocity.x > 0)
-        {
-            sr.flipX = false;
+            rb.AddForce(Physics.gravity * (rb.mass * rb.mass));
         }
 
     }
