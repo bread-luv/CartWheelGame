@@ -220,6 +220,8 @@ MonoBehaviour:
   deactivateObjects:
   - {fileID: 1602430885}
   - {fileID: 4770546}
+  _activate: 1
+  deactivate: 1
   deactivateSelf: 1
 --- !u!114 &4770549
 MonoBehaviour:
@@ -589,6 +591,8 @@ MonoBehaviour:
   - {fileID: 4770546}
   deactivateObjects:
   - {fileID: 1306234040}
+  _activate: 1
+  deactivate: 1
   deactivateSelf: 1
 --- !u!1 &409820390
 GameObject:
@@ -741,6 +745,8 @@ MonoBehaviour:
   - {fileID: 1423073121}
   - {fileID: 1776285610}
   deactivateObjects: []
+  _activate: 1
+  deactivate: 0
   deactivateSelf: 1
 --- !u!1 &503865016
 GameObject:
@@ -1798,6 +1804,8 @@ MonoBehaviour:
   - {fileID: 1832422473}
   - {fileID: 250502702}
   - {fileID: 686303897}
+  _activate: 1
+  deactivate: 1
   deactivateSelf: 0
 --- !u!1 &1706515557
 GameObject:
