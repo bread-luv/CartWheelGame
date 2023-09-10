@@ -3052,6 +3052,10 @@ MonoBehaviour:
   - {fileID: 939312214}
   - {fileID: 979809165}
   - {fileID: 737213131}
+  deactivateObjects: []
+  _activate: 1
+  deactivate: 0
+  deactivateSelf: 1
 --- !u!114 &1353621338
 MonoBehaviour:
   m_ObjectHideFlags: 0
