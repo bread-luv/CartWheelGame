@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class BBQBoxSpawner : MonoBehaviour
 {
-    public string item;
+    public string _item;
     public Sprite[] itemSpr;
     public GameObject terrain;
+    public GameObject manager;
+    public GameObject table;
 
     private Sprite setSpr;
     private Vector3 mousePos;
 
     private void Start()
     {
-        if (item == "burger")
+        if (_item == "burger")
         {
             setSpr = itemSpr[0];
         }
-        else if (item == "prawn")
+        else if (_item == "prawn")
         {
             setSpr = itemSpr[1];
         }
@@ -40,16 +42,22 @@ public class BBQBoxSpawner : MonoBehaviour
         item.AddComponent<Rigidbody>();
         item.AddComponent<BoxCollider>();
         item.AddComponent<BBQObject>();
-        item.AddComponent<DragAndThrow>();
+        //item.AddComponent<DragAndThrow>();
 
         item.GetComponent<SpriteRenderer>().sprite = setSpr;
 
         item.GetComponent<Rigidbody>().mass = 1;
+        item.GetComponent<Rigidbody>().freezeRotation = true;
+        item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
 
-        item.GetComponent<BoxCollider>().size = new Vector3(1, 1, 30);
-        item.GetComponent<BoxCollider>().center = new Vector3(item.transform.position.x, item.transform.position.y, item.transform.position.z);
+        Vector2 S = item.GetComponent<SpriteRenderer>().sprite.bounds.size;
+        item.GetComponent<BoxCollider>().size = new Vector3(S.x, S.y, 0.2f);
+        item.GetComponent<BoxCollider>().center = new Vector3(S.x / 2, S.y / 2);
 
         item.GetComponent<BBQObject>().terrain = terrain;
+        item.GetComponent<BBQObject>().objectType = _item;
+        item.GetComponent<BBQObject>().manager = manager;
+        item.GetComponent<BBQObject>().table = table;
 
         mousePos = Input.mousePosition;
         mousePos.z = gameObject.transform.position.z + 9.0f;
