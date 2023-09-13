@@ -9,6 +9,7 @@ public class BBQBoxSpawner : MonoBehaviour
     public GameObject terrain;
     public GameObject manager;
     public GameObject table;
+    public GameObject BBQ;
 
     private Sprite setSpr;
     private Vector3 mousePos;
@@ -58,6 +59,7 @@ public class BBQBoxSpawner : MonoBehaviour
         item.GetComponent<BBQObject>().objectType = _item;
         item.GetComponent<BBQObject>().manager = manager;
         item.GetComponent<BBQObject>().table = table;
+        item.GetComponent<BBQObject>().BBQ = BBQ;
 
         mousePos = Input.mousePosition;
         mousePos.z = gameObject.transform.position.z + 9.0f;

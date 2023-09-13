@@ -308,6 +308,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 1996513026}
+  - {fileID: 421498473}
+  - {fileID: 1446645920}
+  - {fileID: 743814009}
   deactivateObjects: []
   _activate: 1
   deactivate: 0
@@ -714,7 +717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &421498474
 Transform:
   m_ObjectHideFlags: 0
@@ -750,6 +753,7 @@ MonoBehaviour:
   terrain: {fileID: 1067997807}
   manager: {fileID: 1996513026}
   table: {fileID: 1337966019}
+  BBQ: {fileID: 737962284}
 --- !u!212 &421498476
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1475,7 +1479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &743814010
 Transform:
   m_ObjectHideFlags: 0
@@ -1511,6 +1515,7 @@ MonoBehaviour:
   terrain: {fileID: 1067997807}
   manager: {fileID: 1996513026}
   table: {fileID: 1337966019}
+  BBQ: {fileID: 737962284}
 --- !u!212 &743814012
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2087,7 +2092,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'OUT OF LIVES!
 
-    You got 0 items'
+    You got 0 stars'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3176,7 +3181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1446645921
 Transform:
   m_ObjectHideFlags: 0
@@ -3212,6 +3217,7 @@ MonoBehaviour:
   terrain: {fileID: 1067997807}
   manager: {fileID: 1996513026}
   table: {fileID: 1337966019}
+  BBQ: {fileID: 737962284}
 --- !u!212 &1446645923
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4074,17 +4080,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seconds: 30
-  minutes: 0
+  minutes: 2
   burgerScore: 0
   prawnScore: 0
   waterScore: 0
   burgerReq: 10
   prawnReq: 10
-  waterReq: 10
+  waterReq: 30
+  threeStarTime: 55
+  twoStarTime: 55
+  stars: 0
   timeText: {fileID: 618766386}
   burgerText: {fileID: 1368676788}
   prawnText: {fileID: 856927590}
   waterText: {fileID: 261671867}
+  winText: {fileID: 879767657}
 --- !u!1 &2088978798
 GameObject:
   m_ObjectHideFlags: 0
