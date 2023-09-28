@@ -20,7 +20,6 @@ public class BoatTravelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(lives);
         livesText.GetComponent<TextMeshProUGUI>().text = lives.ToString();
         if (lives <= 0)
         {

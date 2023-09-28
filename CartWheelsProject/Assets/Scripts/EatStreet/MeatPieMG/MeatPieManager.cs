@@ -59,7 +59,6 @@ public class MeatPieManager : MonoBehaviour
                 pie.GetComponent<PieMovement>().values[2] == value3)
             {
                 score++;
-                Debug.Log(scoreText.GetComponent<TextMeshProUGUI>().text);
                 scoreText.GetComponent<TextMeshProUGUI>().text = score + "/" + noPies;
             }
             pie.GetComponent<PieMovement>().values[0] = 0;

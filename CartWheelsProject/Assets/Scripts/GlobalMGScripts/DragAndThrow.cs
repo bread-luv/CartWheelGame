@@ -6,14 +6,14 @@ public class DragAndThrow : MonoBehaviour
 {
 
     public GameObject hoop;
-    private Rigidbody rigidbody;
+    private Rigidbody _rigidbody;
     private Vector3 screenPoint;
     private Vector3 offset;
     public float speed = 5;
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     void OnMouseDown()
@@ -25,7 +25,7 @@ public class DragAndThrow : MonoBehaviour
 
     void OnMouseDrag()
     {
-        rigidbody.velocity = Vector3.zero;
+        _rigidbody.velocity = Vector3.zero;
         var curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) - offset;
         transform.position = curPosition;

@@ -5,7 +5,7 @@ using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
-    public string name;
+    public string _name;
     public string[] text;
 
     public GameObject nameObj;
@@ -15,13 +15,13 @@ public class Dialogue : MonoBehaviour
 
     void Start()
     {
-        nameObj.GetComponent<TextMeshProUGUI>().text = name;
+        nameObj.GetComponent<TextMeshProUGUI>().text = _name;
         textObj.GetComponent<TextMeshProUGUI>().text = text[0];
     }
 
     private void Update()
     {
-        nameObj.GetComponent<TextMeshProUGUI>().text = name;
+        nameObj.GetComponent<TextMeshProUGUI>().text = _name;
         if (dialoguePos == text.Length)
         {
             gameObject.SetActive(false);
