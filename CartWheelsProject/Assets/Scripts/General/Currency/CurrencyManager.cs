@@ -10,11 +10,22 @@ public class CurrencyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //resetCurrency();
         currency = PlayerPrefs.GetInt("Currency");
     }
 
-    public static void UpdateCurrency()
+    public static bool UpdateCurrency(int add)
     {
+        currency += add;
+        if (currency < 0) { currency = 0; }
+        PlayerPrefs.SetInt("Currency", currency);
+        currency = PlayerPrefs.GetInt("Currency");
+        PlayerPrefs.Save();
+        return true;
+    }
+
+    private void resetCurrency() {
+        currency = 0;
         PlayerPrefs.SetInt("Currency", currency);
         currency = PlayerPrefs.GetInt("Currency");
         PlayerPrefs.Save();

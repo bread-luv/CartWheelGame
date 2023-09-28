@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class BBQMGManager : MonoBehaviour
@@ -27,8 +28,12 @@ public class BBQMGManager : MonoBehaviour
     public GameObject boxes;
 
     public GameObject winText;
+    public GameObject _winText;
 
     private int[] oldScores = {0, 0, 0};
+
+    public int[] money = { 35, 70, 105 };
+    private bool moneyAdded = false;
 
     // Update is called once per frame
     void Update()
@@ -49,7 +54,7 @@ public class BBQMGManager : MonoBehaviour
                 boxes.SetActive(false);
                 timeText.GetComponent<TextMeshProUGUI>().text = "0:00";
                 winText.SetActive(true);
-                winText.GetComponent<TextMeshProUGUI>().text = "OUT OF TIME!\nYou did not prepare enough items.";
+                _winText.GetComponent<Text>().text = "YOU LOSE!\n\n\nYou ran out of time!\nYou earned 0 star(s)!\nYou earned $0!"; ;
             }
             else
             {
@@ -78,9 +83,15 @@ public class BBQMGManager : MonoBehaviour
                 stars = 1;
             }
 
+            if (stars > 0 && !moneyAdded)
+            {
+                moneyAdded = CurrencyManager.UpdateCurrency(money[stars - 1]);
+            }
+
             boxes.SetActive(false);
             winText.SetActive(true);
-            winText.GetComponent<TextMeshProUGUI>().text = "YOU WIN!\nYou got " + stars + " star(s)!";
+            _winText.GetComponent<Text>().text = "YOU WIN!\n\n\nYou finished with " + minutes.ToString("F0") + ":" + ((seconds < 10) ? ("0") : ("")) + seconds.ToString("F0") + "left!\nYou earned " + stars + " star(s)!\nYou earned $" + money[stars - 1] + "!";
+            gameObject.SetActive(false);
         }
     }
 

@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnimalManager : MonoBehaviour
 {
     public GameObject[] animalStorage;
     public GameObject[] Animals;
-    public static int maxScore = 1;
+    public int maxScore = 1;
     public GameObject scoreLabel;
 
     public GameObject Score;
-    public GameObject RandomText;
-    public GameObject RandomText2;
+    public GameObject winText;
+    public GameObject _winText;
     public GameObject _Animals;
 
     private GameObject currentAnimals;
@@ -48,8 +49,8 @@ public class AnimalManager : MonoBehaviour
     {
         if (scoreLabel.GetComponent<ScoreScript>().currentScore == maxScore)
         {
-            Score.SetActive(false);
-            RandomText.SetActive(true);
+            winText.SetActive(true);
+            _winText.GetComponent<Text>().text = "YOU WIN!\n\n\nYou got " + scoreLabel.GetComponent<ScoreScript>().currentScore + " animals correct!\n You earned STARS star(s)!\nYou earned $X!";
             _Animals.SetActive(false);
         }
         else if (scoreLabel.GetComponent<ScoreScript>().currentScore < 0)
@@ -60,8 +61,8 @@ public class AnimalManager : MonoBehaviour
 
     public void Incorrect()
     {
-        Score.SetActive(false);
-        RandomText2.SetActive(true);
+        winText.SetActive(true);
+        _winText.GetComponent<Text>().text = "YOU LOSE!\n\n\nYou got 0 animals correct!\n You earned 0 stars!\nYou earned $0!";
         _Animals.SetActive(false);
     }
 
