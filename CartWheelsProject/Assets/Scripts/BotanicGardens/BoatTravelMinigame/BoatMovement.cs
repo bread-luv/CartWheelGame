@@ -31,8 +31,8 @@ public class BoatMovement : MonoBehaviour
             {
                 _object.SetActive(true);
             }
-            activateOnWin[0].GetComponent<TextMeshProUGUI>().text = "YOU WIN!!\nYou got " + manager.GetComponent<BoatTravelManager>().lives + " star(s)!";
 
+            manager.GetComponent<BoatTravelManager>().hasWon = true;
         }
 
         foreach (GameObject obstacle in obstacles)
@@ -40,7 +40,6 @@ public class BoatMovement : MonoBehaviour
             if (collision.gameObject == obstacle)
             {
                 manager.GetComponent<BoatTravelManager>().lives -= 1;
-
             }
         }
     }

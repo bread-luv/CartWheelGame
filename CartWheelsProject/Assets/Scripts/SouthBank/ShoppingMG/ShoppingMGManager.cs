@@ -10,7 +10,7 @@ public class ShoppingMGManager : MonoBehaviour
     private double timeAccel = 0;
     private int side = 1;
 
-    public int oneStar = 40;
+    public int oneStar = 50;
     public int twoStar = 75;
     public int threeStar = 100;
     private int stars = 0;
@@ -22,9 +22,13 @@ public class ShoppingMGManager : MonoBehaviour
     public GameObject scoreText;
     public GameObject livesText;
     public GameObject winText;
+    public GameObject _winText;
 
     public int lives = 3;
     public int score = 0;
+
+    public int[] money = { 25, 50, 75 };
+    private bool moneyAdded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -56,11 +60,17 @@ public class ShoppingMGManager : MonoBehaviour
                 {
                     stars = 3;
                 }
-                winText.GetComponent<TextMeshProUGUI>().text = "OUT OF LIVES!\nYou got " + score + " items!\nYou earned " + stars + " star(s)!";
+
+                if (stars > 0 && !moneyAdded)
+                {
+                    moneyAdded = CurrencyManager.UpdateCurrency(money[stars - 1]);
+                }
+
+                _winText.GetComponent<Text>().text = "YOU WIN!\n\n\nYou got " + score + " items!\nYou earned " + stars + " star(s)!\nYou earned $" + money[stars - 1] + "!";
             }
             else
             {
-                winText.GetComponent<TextMeshProUGUI>().text = "OUT OF LIVES!\nYou only got " + score + " item(s).\nThis is not enough to start the picnic.\nTRY AGAIN";
+                _winText.GetComponent<Text>().text = "YOU LOSE!\n\n\nYou only got " + score + " item(s).\nYou earned 0 stars!\nYou earned $0!";
             }
 
             livesText.GetComponent<TextMeshProUGUI>().text = "0";

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 
@@ -9,8 +10,14 @@ public class BoatTravelManager : MonoBehaviour
     public int lives = 3;
     public GameObject livesText;
     public GameObject boat;
-    public GameObject failtext;
-    
+    public GameObject winText;
+    public GameObject _winText;
+
+    public bool hasWon = false;
+
+    public int[] money = { 30, 60, 90 };
+    private bool moneyAdded = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +31,17 @@ public class BoatTravelManager : MonoBehaviour
         if (lives <= 0)
         {
             boat.SetActive(false);
-            failtext.SetActive(true);
+            winText.SetActive(true);
+            _winText.GetComponent<Text>().text = "YOU LOSE!\n\n\nYou ran out of lives!\nYou earned 0 stars!\nYou earned $0!";
+        }
+
+        if (hasWon)
+        {
+            if (!moneyAdded)
+            {
+                moneyAdded = CurrencyManager.UpdateCurrency(money[lives - 1]);
+            }
+            _winText.GetComponent<Text>().text = "YOU WIN!!\n\n\nYou finished with " + lives + " lives!\nYou earned " + lives + " star(s)!\nYou earned $" + money[lives - 1] +"!";
         }
     }
 }
