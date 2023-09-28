@@ -61,7 +61,6 @@ public class BBQObject : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(cook);
         if (!Input.GetMouseButton(0) && iniDragged == true)
         {
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;

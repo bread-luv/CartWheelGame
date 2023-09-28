@@ -85,8 +85,6 @@ public class TrolleyMovement : MonoBehaviour
                 rb.velocity = new Vector3(0, 0, 0);
             }
 
-            Debug.Log(mousePos.x);
-
             rb.AddForce(Physics.gravity * (rb.mass * rb.mass));
         }
 

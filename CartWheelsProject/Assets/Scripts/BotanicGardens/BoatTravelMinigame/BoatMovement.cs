@@ -32,7 +32,6 @@ public class BoatMovement : MonoBehaviour
                 _object.SetActive(true);
             }
             activateOnWin[0].GetComponent<TextMeshProUGUI>().text = "YOU WIN!!\nYou got " + manager.GetComponent<BoatTravelManager>().lives + " star(s)!";
-            //exit.GetComponent<SceneLoader>().LoadScene("EatStreet");
 
         }
 
