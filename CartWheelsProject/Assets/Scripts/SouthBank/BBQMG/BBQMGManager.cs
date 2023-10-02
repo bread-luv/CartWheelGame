@@ -35,6 +35,11 @@ public class BBQMGManager : MonoBehaviour
     public int[] money = { 35, 70, 105 };
     private bool moneyAdded = false;
 
+    public AudioClip winSound;
+    public AudioClip loseSound;
+    public AudioSource audioSource;
+    private bool soundPlayed;
+
     // Update is called once per frame
     void Update()
     {
@@ -54,7 +59,12 @@ public class BBQMGManager : MonoBehaviour
                 boxes.SetActive(false);
                 timeText.GetComponent<TextMeshProUGUI>().text = "0:00";
                 winText.SetActive(true);
-                _winText.GetComponent<Text>().text = "YOU LOSE!\n\n\nYou ran out of time!\nYou earned 0 star(s)!\nYou earned $0!"; ;
+                _winText.GetComponent<Text>().text = "YOU LOSE!\n\n\nYou ran out of time!\nYou earned 0 star(s)!\nYou earned $0!";
+                if (!soundPlayed)
+                {
+                    audioSource.GetComponent<AudioSource>().PlayOneShot(loseSound);
+                    soundPlayed = true;
+                }
             }
             else
             {
@@ -86,11 +96,12 @@ public class BBQMGManager : MonoBehaviour
             if (stars > 0 && !moneyAdded)
             {
                 moneyAdded = CurrencyManager.UpdateCurrency(money[stars - 1]);
+                audioSource.GetComponent<AudioSource>().PlayOneShot(winSound);
             }
 
             boxes.SetActive(false);
             winText.SetActive(true);
-            _winText.GetComponent<Text>().text = "YOU WIN!\n\n\nYou finished with " + minutes.ToString("F0") + ":" + ((seconds < 10) ? ("0") : ("")) + seconds.ToString("F0") + "left!\nYou earned " + stars + " star(s)!\nYou earned $" + money[stars - 1] + "!";
+            _winText.GetComponent<Text>().text = "YOU WIN!\n\n\nYou finished with " + minutes.ToString("F0") + ":" + ((seconds < 10) ? ("0") : ("")) + seconds.ToString("F0") + " left!\nYou earned " + stars + " star(s)!\nYou earned $" + money[stars - 1] + "!";
             gameObject.SetActive(false);
         }
     }

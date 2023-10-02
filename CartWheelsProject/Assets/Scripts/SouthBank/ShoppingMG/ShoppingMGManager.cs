@@ -24,6 +24,12 @@ public class ShoppingMGManager : MonoBehaviour
     public GameObject winText;
     public GameObject _winText;
 
+    public AudioClip correctSound;
+    public AudioClip incorrectSound;
+    public AudioClip winSound;
+    public AudioClip loseSound;
+    private bool soundPlayed;
+
     public int lives = 3;
     public int score = 0;
 
@@ -64,13 +70,19 @@ public class ShoppingMGManager : MonoBehaviour
                 if (stars > 0 && !moneyAdded)
                 {
                     moneyAdded = CurrencyManager.UpdateCurrency(money[stars - 1]);
+                    gameObject.GetComponent<AudioSource>().PlayOneShot(winSound);
                 }
 
                 _winText.GetComponent<Text>().text = "YOU WIN!\n\n\nYou got " + score + " items!\nYou earned " + stars + " star(s)!\nYou earned $" + money[stars - 1] + "!";
             }
             else
             {
-                _winText.GetComponent<Text>().text = "YOU LOSE!\n\n\nYou only got " + score + " item(s).\nYou earned 0 stars!\nYou earned $0!";
+                _winText.GetComponent<Text>().text = "YOU LOSE!\n\n\nYou only got " + score + " item(s)!\nYou earned 0 stars!\nYou earned $0!";
+                if (!soundPlayed)
+                {
+                    gameObject.GetComponent<AudioSource>().PlayOneShot(loseSound);
+                    soundPlayed = true;
+                }
             }
 
             livesText.GetComponent<TextMeshProUGUI>().text = "0";
@@ -118,15 +130,15 @@ public class ShoppingMGManager : MonoBehaviour
         item.GetComponent<ItemFly>().trolley = trolley;
         item.GetComponent<ItemFly>().terrain = terrain;
         item.GetComponent<ItemFly>().manager = gameObject;
+        item.GetComponent<ItemFly>().correctSound = correctSound;
+        item.GetComponent<ItemFly>().incorrectSound = incorrectSound;
 
         item.GetComponent<SpriteRenderer>().sprite = items[Random.Range(0, items.Length)];
 
         item.GetComponent<Rigidbody>().mass = 1;
 
-        //item.GetComponent<BoxCollider>().isTrigger = true;
         item.GetComponent<BoxCollider>().size = new Vector3(1, 1, 30);
         item.GetComponent<BoxCollider>().center = new Vector3(item.transform.position.x, item.transform.position.y, item.transform.position.z);
-        //Physics.IgnoreCollision(gameObject.GetComponent<BoxCollider>(), terrain.GetComponent<BoxCollider>());
 
 
 

@@ -5,13 +5,13 @@ using TMPro;
 
 public class BoatMovement : MonoBehaviour
 {
-    public GameObject exit;
     public GameObject finishLine;
     public GameObject manager;
     public GameObject[] obstacles;
     public static int movementspeed = 1;
     public Vector3 userDirection = Vector3.right;
     public GameObject[] activateOnWin; //lazy option for now
+    public AudioSource hitSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +39,7 @@ public class BoatMovement : MonoBehaviour
         {
             if (collision.gameObject == obstacle)
             {
+                hitSound.Play();
                 manager.GetComponent<BoatTravelManager>().lives -= 1;
             }
         }

@@ -13,6 +13,10 @@ public class BoatTravelManager : MonoBehaviour
     public GameObject winText;
     public GameObject _winText;
 
+    public AudioSource winSound;
+    public AudioSource loseSound;
+    private bool soundPlayed = false;
+
     public bool hasWon = false;
 
     public int[] money = { 30, 60, 90 };
@@ -33,6 +37,11 @@ public class BoatTravelManager : MonoBehaviour
             boat.SetActive(false);
             winText.SetActive(true);
             _winText.GetComponent<Text>().text = "YOU LOSE!\n\n\nYou ran out of lives!\nYou earned 0 stars!\nYou earned $0!";
+            if (!soundPlayed)
+            {
+                loseSound.Play();
+                soundPlayed = true;
+            }
         }
 
         if (hasWon)
@@ -41,7 +50,13 @@ public class BoatTravelManager : MonoBehaviour
             {
                 moneyAdded = CurrencyManager.UpdateCurrency(money[lives - 1]);
             }
+
             _winText.GetComponent<Text>().text = "YOU WIN!!\n\n\nYou finished with " + lives + " lives!\nYou earned " + lives + " star(s)!\nYou earned $" + money[lives - 1] +"!";
+            if (!soundPlayed)
+            {
+                winSound.Play();
+                soundPlayed = true;
+            }
         }
     }
 }

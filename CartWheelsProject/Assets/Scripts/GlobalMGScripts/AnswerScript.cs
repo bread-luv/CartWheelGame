@@ -8,18 +8,22 @@ public class AnswerScript : MonoBehaviour
     public bool isCorrect;
     public string option;
 
+    public AudioClip correctSound;
+    public AudioClip incorrectSound;
+
     public void Answer()
     {
-        if(isCorrect)
+        if (isCorrect)
         {
             if (QuizManager.score < QuizManager.noQuestions)
             {
+                gameObject.GetComponent<AudioSource>().PlayOneShot(correctSound);
                 QuizManager.score += 1;
-            }
+            }            
         }
         else
         {
-            Debug.Log("InCorrect Answer");
+            gameObject.GetComponent<AudioSource>().PlayOneShot(incorrectSound);
         }
 
         if (Random.value < .5)
