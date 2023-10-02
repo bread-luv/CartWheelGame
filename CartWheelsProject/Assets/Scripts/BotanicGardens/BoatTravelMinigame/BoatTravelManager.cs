@@ -52,6 +52,11 @@ public class BoatTravelManager : MonoBehaviour
             }
 
             _winText.GetComponent<Text>().text = "YOU WIN!!\n\n\nYou finished with " + lives + " lives!\nYou earned " + lives + " star(s)!\nYou earned $" + money[lives - 1] +"!";
+            if (PlayerPrefs.GetInt("BG_Travel_Stars") < lives)
+            {
+                SavingLoading.BG_Travel_Stars = lives;
+            }
+            SavingLoading.saveGame();
             if (!soundPlayed)
             {
                 winSound.Play();

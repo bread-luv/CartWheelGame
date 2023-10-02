@@ -108,6 +108,12 @@ public class BBQMGManager : MonoBehaviour
             boxes.SetActive(false);
             winText.SetActive(true);
             _winText.GetComponent<Text>().text = "YOU WIN!\n\n\nYou finished with " + minutes.ToString("F0") + ":" + ((seconds < 10) ? ("0") : ("")) + seconds.ToString("F0") + " left!\nYou earned " + stars + " star(s)!\nYou earned $" + money[stars - 1] + "!";
+    
+            if (PlayerPrefs.GetInt("SB_12_Stars") < stars)
+            {
+                SavingLoading.SB_12_Stars = stars;
+            }
+            SavingLoading.saveGame();
             gameObject.SetActive(false);
         }
     }

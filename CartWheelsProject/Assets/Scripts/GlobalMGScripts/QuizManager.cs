@@ -31,6 +31,8 @@ public class QuizManager : MonoBehaviour
     public AudioClip loseSound;
     private bool soundPlayed;
 
+    public string starVar;
+
     void Start()
     {
         score = 0;
@@ -54,6 +56,17 @@ public class QuizManager : MonoBehaviour
         else
         {
             stars = score;
+            if (starVar == "BG_12_Stars" && PlayerPrefs.GetInt(starVar) < stars)
+            {
+                SavingLoading.BG_12_Stars = stars;
+            }
+            else if (starVar == "ES_11_Stars" && PlayerPrefs.GetInt(starVar) < stars)
+            {
+                SavingLoading.ES_11_Stars = stars;
+            }
+
+            SavingLoading.saveGame();
+            
             if (!moneyAdded && stars > 0)
             {
                 moneyAdded = CurrencyManager.UpdateCurrency(money[stars - 1]);

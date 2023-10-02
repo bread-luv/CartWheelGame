@@ -101,6 +101,11 @@ public class MeatPieManager : MonoBehaviour
             if (stars > 0)
             {
                 winText.GetComponent<Text>().text = "YOU WIN!\n\n\nYou got " + score + " pies correct!\nYou earned " + stars + " star(s)!\nYou earned $" + money[stars - 1] + "!";
+                if (PlayerPrefs.GetInt("ES_12_Stars") < stars)
+                {
+                    SavingLoading.ES_12_Stars = stars;
+                }
+                SavingLoading.saveGame();
             }
             else
             {

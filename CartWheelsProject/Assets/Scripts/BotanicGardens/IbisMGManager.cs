@@ -65,6 +65,11 @@ public class IbisMGManager : MonoBehaviour
                 if (stars > 0 && !moneyAdded)
                 {
                     moneyAdded = CurrencyManager.UpdateCurrency(money[stars - 1]);
+                    if (PlayerPrefs.GetInt("BG_13_Stars") < stars)
+                    {
+                        SavingLoading.BG_13_Stars = stars;
+                    }
+                    SavingLoading.saveGame();
                     endText.GetComponent<Text>().text = "YOU WIN!\n\n\nYou lost " + (initialLives - lives) + " life/lives!\nYou earned " + stars + " star(s)!\nYou earned $" + money[stars - 1] + "!";
                     gameObject.GetComponent<AudioSource>().PlayOneShot(winSound);
                 }

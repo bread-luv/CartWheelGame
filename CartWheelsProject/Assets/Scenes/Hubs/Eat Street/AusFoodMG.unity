@@ -3111,6 +3111,7 @@ MonoBehaviour:
   - Egg Sandwich
   winSound: {fileID: 8300000, guid: 27a7794b3375bf140b6fc2f39f838c33, type: 3}
   loseSound: {fileID: 8300000, guid: bc21281aaecc6ad45be5130865728499, type: 3}
+  starVar: ES_11_Stars
 --- !u!4 &1851879111
 Transform:
   m_ObjectHideFlags: 0
