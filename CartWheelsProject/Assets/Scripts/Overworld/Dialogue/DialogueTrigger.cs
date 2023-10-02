@@ -11,7 +11,7 @@ public class DialogueTrigger : MonoBehaviour
     void OnMouseDown()
     {
         dialogueBox.SetActive(true);
-        dialogueBox.GetComponent<Dialogue>().name = _name;
+        dialogueBox.GetComponent<Dialogue>()._name = _name;
         dialogueBox.GetComponent<Dialogue>().text = dialogue;
         dialogueBox.GetComponent<Dialogue>().dialoguePos = 0;
     }

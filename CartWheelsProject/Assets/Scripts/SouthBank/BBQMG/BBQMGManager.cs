@@ -26,6 +26,7 @@ public class BBQMGManager : MonoBehaviour
     public GameObject prawnText;
     public GameObject waterText;
     public GameObject boxes;
+    public GameObject BBQ;
 
     public GameObject winText;
     public GameObject _winText;
@@ -40,9 +41,14 @@ public class BBQMGManager : MonoBehaviour
     public AudioSource audioSource;
     private bool soundPlayed;
 
+    public GameObject smoke;
+    private float smokeTimer;
+
     // Update is called once per frame
     void Update()
     {
+        
+
         timeText.GetComponent<TextMeshProUGUI>().text = minutes.ToString("F0") + ":" + ((seconds < 10) ? ("0") : ("")) + seconds.ToString("F0");
 
         burgerText.GetComponent<TextMeshProUGUI>().text = "Burgers: " + burgerScore + "/" + burgerReq;
