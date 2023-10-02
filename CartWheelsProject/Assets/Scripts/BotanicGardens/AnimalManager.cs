@@ -15,6 +15,10 @@ public class AnimalManager : MonoBehaviour
     public GameObject _winText;
     public GameObject _Animals;
 
+    public AudioClip winSound;
+    public AudioClip loseSound;
+    private bool soundPlayed;
+
     private GameObject currentAnimals;
 
     [SerializeField]
@@ -51,6 +55,11 @@ public class AnimalManager : MonoBehaviour
         {
             winText.SetActive(true);
             _winText.GetComponent<Text>().text = "YOU WIN!\n\n\nYou got " + scoreLabel.GetComponent<ScoreScript>().currentScore + " animals correct!\n You earned STARS star(s)!\nYou earned $X!";
+            if (!soundPlayed)
+            {
+                gameObject.GetComponent<AudioSource>().PlayOneShot(winSound);
+                soundPlayed = true;
+            }
             _Animals.SetActive(false);
         }
         else if (scoreLabel.GetComponent<ScoreScript>().currentScore < 0)
@@ -63,6 +72,11 @@ public class AnimalManager : MonoBehaviour
     {
         winText.SetActive(true);
         _winText.GetComponent<Text>().text = "YOU LOSE!\n\n\nYou got 0 animals correct!\n You earned 0 stars!\nYou earned $0!";
+        if (!soundPlayed)
+        {
+            gameObject.GetComponent<AudioSource>().PlayOneShot(loseSound);
+            soundPlayed = true;
+        }
         _Animals.SetActive(false);
     }
 

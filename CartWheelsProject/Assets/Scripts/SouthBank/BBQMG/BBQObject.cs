@@ -9,6 +9,10 @@ public class BBQObject : MonoBehaviour
     public GameObject manager;
     public GameObject BBQ;
     public GameObject table;
+    public AudioClip correctSound;
+    public AudioClip incorrectSound;
+    public AudioClip sizzleSound;
+    public AudioSource audioSource;
 
     private SpriteRenderer sr;
 
@@ -19,6 +23,8 @@ public class BBQObject : MonoBehaviour
     private float cook = 0;
     private int cookTime = 6;
     private int cookBurn = 12;
+
+    
 
     void Start()
     {
@@ -43,6 +49,10 @@ public class BBQObject : MonoBehaviour
             {
                 scorePoint();
             }
+            else
+            {
+                audioSource.GetComponent<AudioSource>().PlayOneShot(incorrectSound);
+            }
             Destroy(gameObject);
         }
     }
@@ -54,6 +64,17 @@ public class BBQObject : MonoBehaviour
             if (objectType != "water")
             {
                 cook += Time.deltaTime;
+                if (!BBQ.GetComponent<AudioSource>().isPlaying)
+                {
+                    BBQ.GetComponent<AudioSource>().PlayOneShot(sizzleSound);
+                }
+            }
+            if (objectType == "shrimp" || objectType == "burger")
+            {
+                if (!BBQ.GetComponent<AudioSource>().isPlaying)
+                {
+                    BBQ.GetComponent<AudioSource>().PlayOneShot(sizzleSound);
+                }
             }
         }
     }
@@ -115,5 +136,6 @@ public class BBQObject : MonoBehaviour
         {
             manager.GetComponent<BBQMGManager>().waterScore += 1;
         }
+        audioSource.GetComponent<AudioSource>().PlayOneShot(correctSound);
     }
 }

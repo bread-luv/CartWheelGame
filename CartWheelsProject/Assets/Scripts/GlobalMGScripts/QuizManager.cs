@@ -27,6 +27,12 @@ public class QuizManager : MonoBehaviour
     public static int[] money = { 10, 20, 30 };
     private bool moneyAdded = false;
 
+    public AudioClip winSound;
+    public AudioClip loseSound;
+    private bool soundPlayed;
+
+    public string starVar;
+
     void Start()
     {
         score = 0;
@@ -41,6 +47,7 @@ public class QuizManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(currentQuestion);
         if (currentQuestion < noQuestions)
         {
             currentCorrect = answers[currentQuestion][0];
@@ -49,9 +56,26 @@ public class QuizManager : MonoBehaviour
         else
         {
             stars = score;
-            if (!moneyAdded)
+            if (starVar == "BG_12_Stars" && PlayerPrefs.GetInt(starVar) < stars)
+            {
+                SavingLoading.BG_12_Stars = stars;
+            }
+            else if (starVar == "ES_11_Stars" && PlayerPrefs.GetInt(starVar) < stars)
+            {
+                SavingLoading.ES_11_Stars = stars;
+            }
+
+            SavingLoading.saveGame();
+            
+            if (!moneyAdded && stars > 0)
             {
                 moneyAdded = CurrencyManager.UpdateCurrency(money[stars - 1]);
+                gameObject.GetComponent<AudioSource>().PlayOneShot(winSound);
+            }
+            if (stars == 0 && !soundPlayed)
+            {
+                gameObject.GetComponent<AudioSource>().PlayOneShot(loseSound);
+                soundPlayed = true;
             }
             winText.SetActive(true);
             for (int i = 0; i < buttons.Length; i++)

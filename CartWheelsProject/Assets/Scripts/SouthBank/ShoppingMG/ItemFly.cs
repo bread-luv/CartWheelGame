@@ -12,6 +12,8 @@ public class ItemFly : MonoBehaviour
     public float height;
     public GameObject trolley;
     public GameObject terrain;
+    public AudioClip correctSound;
+    public AudioClip incorrectSound;
 
     // Start is called before the first frame update
     void Start()
@@ -33,15 +35,16 @@ public class ItemFly : MonoBehaviour
 
     private void OnCollisionEnter(Collision collide)
     {
-        Debug.Log("AHHH");
         if (collide.gameObject == trolley)
         {
             manager.GetComponent<ShoppingMGManager>().score += 1;
+            manager.GetComponent<AudioSource>().PlayOneShot(correctSound);
             Destroy(gameObject);
         }
         else if (collide.gameObject == terrain)
         {
             manager.GetComponent<ShoppingMGManager>().lives -= 1;
+            manager.GetComponent<AudioSource>().PlayOneShot(incorrectSound);
             Destroy(gameObject);
         }
     }

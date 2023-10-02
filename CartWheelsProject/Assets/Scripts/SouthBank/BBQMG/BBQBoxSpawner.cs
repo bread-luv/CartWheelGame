@@ -10,6 +10,9 @@ public class BBQBoxSpawner : MonoBehaviour
     public GameObject manager;
     public GameObject table;
     public GameObject BBQ;
+    public AudioClip correctSound;
+    public AudioClip incorrectSound;
+    public AudioClip sizzleSound;
 
     private Sprite setSpr;
     private Vector3 mousePos;
@@ -43,7 +46,6 @@ public class BBQBoxSpawner : MonoBehaviour
         item.AddComponent<Rigidbody>();
         item.AddComponent<BoxCollider>();
         item.AddComponent<BBQObject>();
-        //item.AddComponent<DragAndThrow>();
 
         item.GetComponent<SpriteRenderer>().sprite = setSpr;
 
@@ -60,6 +62,10 @@ public class BBQBoxSpawner : MonoBehaviour
         item.GetComponent<BBQObject>().manager = manager;
         item.GetComponent<BBQObject>().table = table;
         item.GetComponent<BBQObject>().BBQ = BBQ;
+        item.GetComponent<BBQObject>().correctSound = correctSound;
+        item.GetComponent<BBQObject>().incorrectSound = incorrectSound;
+        item.GetComponent<BBQObject>().sizzleSound = sizzleSound;
+        item.GetComponent<BBQObject>().audioSource = gameObject.GetComponent<AudioSource>();
 
         mousePos = Input.mousePosition;
         mousePos.z = gameObject.transform.position.z + 9.0f;

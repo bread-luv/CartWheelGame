@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
 
     public GameObject noMove;
 
+    public bool hasAnimation = false;
+
+    public Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,10 +62,12 @@ public class PlayerController : MonoBehaviour
                     if (mousePos.x < Screen.width / 4)
                     {
                         rb.velocity = new Vector3(-speed, 0, 0);
+                        if (hasAnimation) { anim.SetFloat("walkSpeed", 1); }
                     }
                     else
                     {
                         rb.velocity = new Vector3(-speed/2, 0, 0);
+                        if (hasAnimation) { anim.SetFloat("walkSpeed", 0.5f); }
                     }
                 }
                 else
@@ -70,16 +76,21 @@ public class PlayerController : MonoBehaviour
                     if (mousePos.x > Screen.width / 2 + Screen.width / 4)
                     {
                         rb.velocity = new Vector3(speed, 0, 0);
+                        if (hasAnimation) { anim.SetFloat("walkSpeed", 1); }
                     }
                     else
                     {
                         rb.velocity = new Vector3(speed / 2, 0, 0);
+                        if (hasAnimation) { anim.SetFloat("walkSpeed", 0.5f); }
                     }
                 }
-            }
+                if (hasAnimation) { anim.SetBool("isWalking", true); }
+
+                }
             else
             {
                 rb.velocity = new Vector3(0, 0, 0);
+                if (hasAnimation) { anim.SetBool("isWalking", false); }
             }
 
             rb.AddForce(Physics.gravity * (rb.mass * rb.mass));
