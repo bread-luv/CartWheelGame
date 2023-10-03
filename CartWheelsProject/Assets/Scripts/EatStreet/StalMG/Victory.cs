@@ -25,10 +25,6 @@ public class Victory : MonoBehaviour
         {
             VText.text = "You got " + StallManager.stars + " star(s)!";
         }
-<<<<<<<< Updated upstream:CartWheelsProject/Assets/Scripts/StallMG/Victory.cs
-        
-========
 
->>>>>>>> Stashed changes:CartWheelsProject/Assets/Scripts/EatStreet/StalMG/Victory.cs
     }
 }

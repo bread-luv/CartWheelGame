@@ -43,8 +43,3 @@ public class StallManager : MonoBehaviour
         }
     }
 
-<<<<<<<< Updated upstream:CartWheelsProject/Assets/Scripts/StallMG/StallManager.cs
-}
-========
-}
->>>>>>>> Stashed changes:CartWheelsProject/Assets/Scripts/EatStreet/StalMG/StallManager.cs
