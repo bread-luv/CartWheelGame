@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hubs/SouthBank/BBQMG.unity
     guid: fc7a3b71c642fa24c80d58c8a4424047
+  - enabled: 1
+    path: Assets/Scenes/Hubs/SouthBank/LamingtonMG.unity
+    guid: 355a87914ecf2ca488bb01f580e60f19
   m_configObjects: {}
