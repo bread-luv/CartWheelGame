@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Lives : MonoBehaviour
 {
     //public int lives = 3;
-
+    public GameObject manager;
     [SerializeField]
     TextMeshProUGUI LifeCounter;
 
@@ -19,6 +19,6 @@ public class Lives : MonoBehaviour
 
     void Update()
     {
-        LifeCounter.text = StallManager.lives.ToString();
+        LifeCounter.text = manager.GetComponent<StallManager>().lives.ToString();
     }
 }
