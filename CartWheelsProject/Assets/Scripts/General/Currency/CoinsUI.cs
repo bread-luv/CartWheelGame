@@ -6,16 +6,20 @@ using UnityEngine.UI;
 public class CoinsUI : MonoBehaviour
 {
     private Text text;
+    public GameObject manager;
     // Start is called before the first frame update
     void Start()
     {
-        text = GetComponent<Text>();
+        text = gameObject.GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        string[] temp = text.text.Split('$');
-        text.text = temp[0] + "$" + CurrencyManager.currency;
+        if (text != null)
+        {
+            string[] temp = text.text.Split('$');
+            text.text = temp[0] + "$" + CurrencyManager.currency;
+        }
     }
 }
