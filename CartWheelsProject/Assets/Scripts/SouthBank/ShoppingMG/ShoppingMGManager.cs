@@ -74,9 +74,9 @@ public class ShoppingMGManager : MonoBehaviour
                 }
 
                 _winText.GetComponent<Text>().text = "YOU WIN!\n\n\nYou got " + score + " items!\nYou earned " + stars + " star(s)!\nYou earned $" + money[stars - 1] + "!";
-                if (PlayerPrefs.GetInt("ES_11_Stars") < stars)
+                if (PlayerPrefs.GetInt("SB_11_Stars") < stars)
                 {
-                    SavingLoading.ES_11_Stars = stars;
+                    SavingLoading.SB_11_Stars = stars;
                 }
                 SavingLoading.saveGame();
             }

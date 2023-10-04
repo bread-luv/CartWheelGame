@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class Collide : MonoBehaviour
 {
-
+    public GameObject manager;
     public GameObject item;
     public List<GameObject> var_items;
+
+    public AudioClip correctSound;
+    public AudioClip incorrectSound;
 
 
     void OnCollisionEnter(Collision collision)
@@ -15,18 +18,18 @@ public class Collide : MonoBehaviour
 
         if (collision.gameObject == item)
         {
-            Debug.Log("True");
-            StallManager.count += 1;
-            Destroy(collision.gameObject);
+            manager.GetComponent<StallManager>().count += 1;
+            gameObject.GetComponent<AudioSource>().PlayOneShot(correctSound);
+            collision.gameObject.SetActive(false);
             foreach (var objects in var_items)
-            { Destroy(objects); }
+            { objects.SetActive(false); }
         }
 
         else if (var_items.Contains(collision.gameObject))
         {
-            Debug.Log("False");
-            StallManager.lives -= 1;
-            Destroy(collision.gameObject);
+            manager.GetComponent<StallManager>().lives -= 1;
+            gameObject.GetComponent<AudioSource>().PlayOneShot(incorrectSound);
+            collision.gameObject.SetActive(false);
         }
     }
 }
