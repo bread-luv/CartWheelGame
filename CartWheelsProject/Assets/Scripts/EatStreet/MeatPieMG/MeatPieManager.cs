@@ -9,10 +9,10 @@ public class MeatPieManager : MonoBehaviour
     public GameObject[] screenText;
     public GameObject pie;
 
-    public static int score = 0;
+    public int score = 0;
 
-    public static int stars = 0;
-    public static int noPies = 30;
+    public int stars = 0;
+    public int noPies = 30;
 
     public int noDispense1 = 3;
     public int noDispense2 = 2;
@@ -32,6 +32,18 @@ public class MeatPieManager : MonoBehaviour
     public GameObject[] setInactive;
 
     private int currentPie = 1;
+
+    public GameObject winText;
+
+    public int[] money = { 40, 80, 120 };
+    private bool moneyAdded = false;
+
+    public AudioClip correctSound;
+    public AudioClip incorrectSound;
+
+    public AudioClip winSound;
+    public AudioClip loseSound;
+    private bool soundPlayed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -58,10 +70,11 @@ public class MeatPieManager : MonoBehaviour
                 pie.GetComponent<PieMovement>().values[1] == value2 &&
                 pie.GetComponent<PieMovement>().values[2] == value3)
             {
+                gameObject.GetComponent<AudioSource>().PlayOneShot(correctSound);
                 score++;
-                Debug.Log(scoreText.GetComponent<TextMeshProUGUI>().text);
                 scoreText.GetComponent<TextMeshProUGUI>().text = score + "/" + noPies;
             }
+            else { gameObject.GetComponent<AudioSource>().PlayOneShot(incorrectSound); }
             pie.GetComponent<PieMovement>().values[0] = 0;
             pie.GetComponent<PieMovement>().values[1] = 0;
             pie.GetComponent<PieMovement>().values[2] = 0;
@@ -77,6 +90,33 @@ public class MeatPieManager : MonoBehaviour
 
         if (currentPie > noPies)
         {
+            stars = score / 10;
+
+            if (stars > 0 && !moneyAdded)
+            {
+                moneyAdded = CurrencyManager.UpdateCurrency(money[stars - 1]);
+                gameObject.GetComponent<AudioSource>().PlayOneShot(winSound);
+            }
+
+            if (stars > 0)
+            {
+                winText.GetComponent<Text>().text = "YOU WIN!\n\n\nYou got " + score + " pies correct!\nYou earned " + stars + " star(s)!\nYou earned $" + money[stars - 1] + "!";
+                if (PlayerPrefs.GetInt("ES_12_Stars") < stars)
+                {
+                    SavingLoading.ES_12_Stars = stars;
+                }
+                SavingLoading.saveGame();
+            }
+            else
+            {
+                winText.GetComponent<Text>().text = "YOU LOSE!\n\n\nYou got 0 pies correct!\nYou earned 0 star(s)!\nYou earned $0!";
+                if (!soundPlayed)
+                {
+                    gameObject.GetComponent<AudioSource>().PlayOneShot(loseSound);
+                    soundPlayed = true;
+                }
+            }
+
             foreach (GameObject i in setActive)
             {
                 i.SetActive(true);
@@ -86,6 +126,5 @@ public class MeatPieManager : MonoBehaviour
                 j.SetActive(false);
             }
         }
-
     }
 }
