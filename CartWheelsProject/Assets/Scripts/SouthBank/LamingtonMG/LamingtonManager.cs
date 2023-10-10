@@ -19,7 +19,7 @@ public class LamingtonManager : MonoBehaviour
     public int twostar = 20;
     public int threestar = 40;
     public bool complete = false;
-
+    
 
     public GameObject winText;
     public Text _winText;
@@ -43,6 +43,11 @@ public class LamingtonManager : MonoBehaviour
         {   
             seconds -= Time.deltaTime;
             TimeText.text = seconds.ToString("F1");
+        }
+
+        if (seconds == 0 )
+        {
+            phase = 6;
         }
 
         if (phase == 1)
@@ -156,6 +161,10 @@ public class LamingtonManager : MonoBehaviour
         if (phase == 6)
         {
             complete = true;
+            if (seconds >= 0)
+            {
+                stars = 0;
+            }
             Debugtext.SetActive(false);
             if (seconds >= 40)
             {
