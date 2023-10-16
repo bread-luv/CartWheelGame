@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SavingLoading : MonoBehaviour
 {
+    //settings
+    //audio
+    
+
+    //stars
     public static int BG_11_Stars;
     public static int BG_12_Stars;
     public static int BG_13_Stars;

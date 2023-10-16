@@ -38,13 +38,13 @@ public class ItemFly : MonoBehaviour
         if (collide.gameObject == trolley)
         {
             manager.GetComponent<ShoppingMGManager>().score += 1;
-            manager.GetComponent<AudioSource>().PlayOneShot(correctSound);
+            manager.GetComponent<ShoppingMGManager>().sound_source.PlayOneShot(correctSound);
             Destroy(gameObject);
         }
         else if (collide.gameObject == terrain)
         {
             manager.GetComponent<ShoppingMGManager>().lives -= 1;
-            manager.GetComponent<AudioSource>().PlayOneShot(incorrectSound);
+            manager.GetComponent<ShoppingMGManager>().sound_source.PlayOneShot(incorrectSound);
             Destroy(gameObject);
         }
     }
