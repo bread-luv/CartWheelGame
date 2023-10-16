@@ -22,10 +22,10 @@ public class LockedButton : MonoBehaviour
             int level_stars = PlayerPrefs.GetInt(levelRequirement);
 
 
-            if (totalStars < starRequirement || level_stars == 0)
+            if (level_stars == 0)
             {
                 gameObject.GetComponent<Button>().interactable = false;
-                requirementText.text = starRequirement + " stars required\nMust complete " + levelName;
+                requirementText.text = "Must complete " + levelName + " game";
             }
         }
         else
