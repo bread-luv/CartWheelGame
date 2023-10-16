@@ -5,10 +5,19 @@ using UnityEngine;
 public class PossumMove : MonoBehaviour
 {
     public float moveSpeed = 10;
+    public float waitTimer;
     // Start is called before the first frame update
+
+    public Vector3 startPosition;
+
+    void Awake()
+    {
+        startPosition = transform.position; 
+    }
     void Start()
     {
         StartCoroutine(SelfDestruct());
+
     }
 
     // Update is called once per frame
@@ -21,7 +30,9 @@ public class PossumMove : MonoBehaviour
 
     IEnumerator SelfDestruct()
     {
-        yield return new WaitForSeconds(2f);
-        Destroy(gameObject);
+        yield return new WaitForSeconds(waitTimer);
+        transform.position = startPosition;
+
+        StartCoroutine(SelfDestruct());
     }
 }
