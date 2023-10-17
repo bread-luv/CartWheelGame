@@ -3262,6 +3262,7 @@ MonoBehaviour:
   twostar: 20
   threestar: 40
   complete: 0
+  failed: 0
   winText: {fileID: 360814333}
   _winText: {fileID: 1211356362}
   money: 19000000320000004b000000
