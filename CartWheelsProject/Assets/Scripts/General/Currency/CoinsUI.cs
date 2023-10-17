@@ -10,7 +10,8 @@ public class CoinsUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        text = gameObject.GetComponent<Text>();
+        //text = gameObject.GetComponent<Text>();
+        text = GetComponent<Text>();
     }
 
     // Update is called once per frame

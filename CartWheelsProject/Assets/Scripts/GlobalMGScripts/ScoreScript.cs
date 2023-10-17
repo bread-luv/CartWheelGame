@@ -20,6 +20,7 @@ public class ScoreScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        totalScore = AnimalManager.totalCorrectAnimals;
         score = GetComponent<TextMeshProUGUI>();
     }
 
