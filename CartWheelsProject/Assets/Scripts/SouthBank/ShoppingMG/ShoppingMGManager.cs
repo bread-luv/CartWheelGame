@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 
@@ -35,6 +36,8 @@ public class ShoppingMGManager : MonoBehaviour
 
     public int[] money = { 25, 50, 75 };
     private bool moneyAdded = false;
+
+    public AudioSource sound_source;
 
     // Start is called before the first frame update
     void Start()

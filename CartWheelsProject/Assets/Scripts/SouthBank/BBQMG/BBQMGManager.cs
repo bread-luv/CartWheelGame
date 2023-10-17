@@ -44,6 +44,19 @@ public class BBQMGManager : MonoBehaviour
     public GameObject smoke;
     private float smokeTimer;
 
+    public GameObject plusOne;
+
+    private int prev_score1;
+    private int prev_score2;
+    private int prev_score3;
+
+    private void Start()
+    {
+        prev_score1 = 0;
+        prev_score2 = 0;
+        prev_score3 = 0;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -54,6 +67,22 @@ public class BBQMGManager : MonoBehaviour
         burgerText.GetComponent<TextMeshProUGUI>().text = "Burgers: " + burgerScore + "/" + burgerReq;
         prawnText.GetComponent<TextMeshProUGUI>().text = "Prawns: " + prawnScore + "/" + prawnReq;
         waterText.GetComponent<TextMeshProUGUI>().text = "Water: " + waterScore + "/" + waterReq;
+
+        if (prev_score1 != burgerScore)
+        {
+            Instantiate(plusOne, gameObject.transform);
+            prev_score1 = burgerScore;
+        }
+        if (prev_score2 != prawnScore)
+        {
+            Instantiate(plusOne, gameObject.transform);
+            prev_score2 = prawnScore;
+        }
+        if (prev_score3 != waterScore)
+        {
+            Instantiate(plusOne, gameObject.transform);
+            prev_score3 = waterScore;
+        }
 
         if (!finished())
         {
@@ -68,7 +97,7 @@ public class BBQMGManager : MonoBehaviour
                 _winText.GetComponent<Text>().text = "YOU LOSE!\n\n\nYou ran out of time!\nYou earned 0 star(s)!\nYou earned $0!";
                 if (!soundPlayed)
                 {
-                    audioSource.GetComponent<AudioSource>().PlayOneShot(loseSound);
+                    gameObject.GetComponent<AudioSource>().PlayOneShot(loseSound);
                     soundPlayed = true;
                 }
             }
@@ -102,7 +131,7 @@ public class BBQMGManager : MonoBehaviour
             if (stars > 0 && !moneyAdded)
             {
                 moneyAdded = CurrencyManager.UpdateCurrency(money[stars - 1]);
-                audioSource.GetComponent<AudioSource>().PlayOneShot(winSound);
+                gameObject.GetComponent<AudioSource>().PlayOneShot(winSound);
             }
 
             boxes.SetActive(false);

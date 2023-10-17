@@ -11,9 +11,16 @@ public class LamingtonManager : MonoBehaviour
     public GameObject[] Ingredients2;
     public GameObject[] Ingredients3;
     public GameObject Debugtext;
+    public TextMeshProUGUI TimeText; 
     public GameObject MashButton;
     private int phase = 1;
-    private int stars = 3;
+    private int stars = 0;
+    public float seconds = 60;
+    public int twostar = 20;
+    public int threestar = 40;
+    public bool complete = false;
+    public bool failed = false;
+    
 
     public GameObject winText;
     public Text _winText;
@@ -33,6 +40,18 @@ public class LamingtonManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (complete == false)
+        {   
+            seconds -= Time.deltaTime;
+            TimeText.text = seconds.ToString("F1");
+        }
+
+        if (seconds <= 0 )
+        {
+            failed = true;
+            phase = 6;
+        }
+
         if (phase == 1)
         {
             phase = 2;
@@ -143,7 +162,27 @@ public class LamingtonManager : MonoBehaviour
         }
         if (phase == 6)
         {
+            complete = true;
             Debugtext.SetActive(false);
+            if (failed == true)
+            {
+                stars = 0;
+            }
+           
+            else if (failed = false && seconds >= 40)
+            {
+                stars = 3;
+            }
+            else if (failed = false && seconds >= 20)
+            {
+                stars = 2;
+            }
+            else if (failed == false && seconds < 20)
+            { 
+                stars = 1; 
+            }
+
+
             if (stars > 0 && !moneyAdded)
             {
                 moneyAdded = CurrencyManager.UpdateCurrency(money[stars - 1]);
@@ -153,14 +192,15 @@ public class LamingtonManager : MonoBehaviour
                     SavingLoading.SB_13_Stars = stars;
                 }
                 SavingLoading.saveGame();
+                _winText.text = "YOU WIN!\n\n\nYou made the lamingtons!\nYou earned " + stars + " star(s)!\nYou earned $" + money[stars - 1] + "!";
             }
 
             winText.SetActive(true);
-            _winText.text = "YOU WIN!\n\n\nYou made the lamingtons!\nYou earned " + stars + " star(s)!\nYou earned $" + money[stars - 1] + "!";
+            
 
             if (stars <= 0 && !soundPlayed)
             {
-                _winText.text = "YOU LOSE!\n\n\nYou failed to make the lamingtons!\nYou earned 0 stars!\nYou earned $0!";
+                _winText.text = "YOU LOSE!\n\n\nYou ran out of time!\nYou earned 0 stars!\nYou earned $0!";
                 gameObject.GetComponent<AudioSource>().PlayOneShot(loseSound);
                 soundPlayed = true;
             }

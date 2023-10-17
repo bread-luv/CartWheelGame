@@ -45,6 +45,8 @@ public class MeatPieManager : MonoBehaviour
     public AudioClip loseSound;
     private bool soundPlayed = false;
 
+    public AudioSource music_source;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,7 +97,7 @@ public class MeatPieManager : MonoBehaviour
             if (stars > 0 && !moneyAdded)
             {
                 moneyAdded = CurrencyManager.UpdateCurrency(money[stars - 1]);
-                gameObject.GetComponent<AudioSource>().PlayOneShot(winSound);
+                music_source.PlayOneShot(winSound);
             }
 
             if (stars > 0)
@@ -112,7 +114,7 @@ public class MeatPieManager : MonoBehaviour
                 winText.GetComponent<Text>().text = "YOU LOSE!\n\n\nYou got 0 pies correct!\nYou earned 0 star(s)!\nYou earned $0!";
                 if (!soundPlayed)
                 {
-                    gameObject.GetComponent<AudioSource>().PlayOneShot(loseSound);
+                    music_source.PlayOneShot(loseSound);
                     soundPlayed = true;
                 }
             }
