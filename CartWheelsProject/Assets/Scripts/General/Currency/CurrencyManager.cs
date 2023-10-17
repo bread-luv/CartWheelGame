@@ -18,9 +18,9 @@ public class CurrencyManager : MonoBehaviour
     {
         currency += add;
         if (currency < 0) { currency = 0; }
-        PlayerPrefs.SetInt("Currency", currency);
-        currency = PlayerPrefs.GetInt("Currency");
-        PlayerPrefs.Save();
+            PlayerPrefs.SetInt("Currency", currency);
+            currency = PlayerPrefs.GetInt("Currency");
+            PlayerPrefs.Save();
         return true;
     }
 
