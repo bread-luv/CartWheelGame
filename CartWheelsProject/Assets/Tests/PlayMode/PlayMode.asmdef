@@ -1,0 +1,39 @@
+{
+    "name": "PlayMode",
+    "rootNamespace": "",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "BBQScripts",
+        "BoatTravelScripts",
+        "BotanicScripts",
+        "CurrencyScripts",
+        "DialogueScripts",
+        "GeneralScripts",
+        "GlobalMGSScripts",
+        "LamingtonScripts",
+        "MeatPieScripts",
+        "OutsideScripts",
+        "OverworldScripts",
+        "SavingLoadingScripts",
+        "ShoppingScripts",
+        "StallScripts",
+		"Unity.TextMeshPro",
+		"Unity.TextMeshPro.Editor"
+    ],
+	
+	
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
