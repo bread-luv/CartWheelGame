@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 0e111622510e60045afb9fb085fe0408
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Berlin Sans FB
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 86143686148bfd747a4a2e782ceb1aa4, type: 3}
+  - {fileID: 12800000, guid: edcade14a5467594488b11eb211bc2f7, type: 3}
+  - {fileID: 12800000, guid: 22d9aff8004259944bda36dabc2b9a0f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

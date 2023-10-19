@@ -20,6 +20,7 @@ public class LamingtonManager : MonoBehaviour
     public int threestar = 40;
     public bool complete = false;
     public bool failed = false;
+    public GameObject Ending; 
     
 
     public GameObject winText;
@@ -193,6 +194,7 @@ public class LamingtonManager : MonoBehaviour
                 }
                 SavingLoading.saveGame();
                 _winText.text = "YOU WIN!\n\n\nYou made the lamingtons!\nYou earned " + stars + " star(s)!\nYou earned $" + money[stars - 1] + "!";
+                Ending.SetActive(true);
             }
 
             winText.SetActive(true);
