@@ -169,11 +169,11 @@ public class LamingtonManager : MonoBehaviour
                 stars = 0;
             }
            
-            else if (failed = false && seconds >= 40)
+            else if (failed == false && seconds >= 40)
             {
                 stars = 3;
             }
-            else if (failed = false && seconds >= 20)
+            else if (failed == false && seconds >= 20)
             {
                 stars = 2;
             }
