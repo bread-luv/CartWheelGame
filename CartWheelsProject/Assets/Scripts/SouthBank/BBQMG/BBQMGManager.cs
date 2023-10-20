@@ -46,6 +46,8 @@ public class BBQMGManager : MonoBehaviour
 
     public GameObject plusOne;
 
+    public AudioSource musicSource;
+
     private int prev_score1;
     private int prev_score2;
     private int prev_score3;
@@ -60,8 +62,6 @@ public class BBQMGManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
         timeText.GetComponent<TextMeshProUGUI>().text = minutes.ToString("F0") + ":" + ((seconds < 10) ? ("0") : ("")) + seconds.ToString("F0");
 
         burgerText.GetComponent<TextMeshProUGUI>().text = "Burgers: " + burgerScore + "/" + burgerReq;
@@ -97,7 +97,7 @@ public class BBQMGManager : MonoBehaviour
                 _winText.GetComponent<Text>().text = "YOU LOSE!\n\n\nYou ran out of time!\nYou earned 0 star(s)!\nYou earned $0!";
                 if (!soundPlayed)
                 {
-                    gameObject.GetComponent<AudioSource>().PlayOneShot(loseSound);
+                    musicSource.GetComponent<AudioSource>().PlayOneShot(loseSound);
                     soundPlayed = true;
                 }
             }
@@ -131,7 +131,7 @@ public class BBQMGManager : MonoBehaviour
             if (stars > 0 && !moneyAdded)
             {
                 moneyAdded = CurrencyManager.UpdateCurrency(money[stars - 1]);
-                gameObject.GetComponent<AudioSource>().PlayOneShot(winSound);
+                musicSource.GetComponent<AudioSource>().PlayOneShot(winSound);
             }
 
             boxes.SetActive(false);
